@@ -1,4 +1,4 @@
-host: inveniordm.web.cern.ch
+host: test-invenio.web.cern.ch
 
 haproxy:
   inside_cluster: true
@@ -9,7 +9,7 @@ nginx:
   replicas: 2
 
 web:
-  image: inveniosoftware/rdm-sandbox
+  image: gitlab-registry.cern.ch/rodrigdi/my-site:rdm
   replicas: 6
   uwsgi:
     processes: 6
@@ -24,7 +24,7 @@ web:
 
 worker:
   enabled: true
-  image: inveniosoftware/rdm-sandbox
+  image: gitlab-registry.cern.ch/rodrigdi/my-site:rdm
   # Invenio Celery worker application
   app: invenio_app.celery
   # Number of concurrent Celery workers per pod
@@ -43,3 +43,6 @@ postgresql:
 
 elasticsearch:
   inside_cluster: false
+
+logstash:
+  environment: "qa"
